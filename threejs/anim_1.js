@@ -19,15 +19,15 @@ Object.assign( WaveAnimation.prototype, {
 
                 pivot_right_upper_arm = new THREE.Vector3(
                     right_upper_arm.position.x,
-                    right_upper_arm.position.y - right_upper_arm.geometry.parameters.height/2,
+                    right_upper_arm.position.y + right_upper_arm.geometry.parameters.height/2,
                     right_upper_arm.position.z,
                 );                
 
                 // A primeira matriz da operação será a mais à direita
                 // premultiply() vai adicionando as matriz à esquerda                
-                right_upper_arm.matrix.makeTranslation(0, pivot_right_upper_arm.y, 0).premultiply(
+                right_upper_arm.matrix.makeTranslation(0, -pivot_right_upper_arm.y, 0).premultiply(
                     new THREE.Matrix4().makeRotationZ(this._object.theta).premultiply(
-                    new THREE.Matrix4().makeTranslation(pivot_right_upper_arm.x, -pivot_right_upper_arm.y, 0 ) ));
+                    new THREE.Matrix4().makeTranslation(pivot_right_upper_arm.x, pivot_right_upper_arm.y, 0 ) ));
                     
                 // Rotação original
                 //right_upper_arm.matrix.makeRotationZ(this._object.theta).premultiply( new THREE.Matrix4().makeTranslation(2.6, 0, 0 ) );
@@ -36,7 +36,15 @@ Object.assign( WaveAnimation.prototype, {
                 right_upper_arm.updateMatrixWorld(true);
                 // Updating screen
                 stats.update();
-                renderer.render(scene, camera);    
+                renderer.render(scene, camera);
+                
+                console.log("upper arm height: " + right_upper_arm.geometry.parameters.height);
+                console.log("upper arm width: " + right_upper_arm.geometry.parameters.width);
+                console.log("upper arm position x: " + right_upper_arm.position.x);
+                console.log("upper arm position y: " + right_upper_arm.position.y);
+                console.log("upper arm pivot x: " + pivot_right_upper_arm.x);
+                console.log("upper arm pivot y: " + pivot_right_upper_arm.y);
+                console.log("==================");
             })
 
         // Here you may include animations for other parts 
@@ -46,23 +54,23 @@ Object.assign( WaveAnimation.prototype, {
 
                 var pivot_right_lower_arm;
 
-                let right_upper_arm =  robot.getObjectByName("right_upper_arm");
                 let right_lower_arm =  robot.getObjectByName("right_lower_arm");
 
                 pivot_right_lower_arm = new THREE.Vector3(
-                    right_lower_arm.position.x - right_lower_arm.geometry.parameters.width,
-                    right_lower_arm.position.y - right_lower_arm.geometry.parameters.height/2 ,
+                    right_lower_arm.position.x,
+                    right_lower_arm.position.y + right_lower_arm.geometry.parameters.height/2,
                     right_lower_arm.position.z,
                 );
 
-                right_lower_arm.matrix.makeRotationZ(this._object.theta).premultiply(
-                    new THREE.Matrix4().makeTranslation(-pivot_right_lower_arm.x, pivot_right_lower_arm.y/2, 0 ) );
+                right_lower_arm.matrix.makeTranslation(0, pivot_right_lower_arm.y, 0).premultiply(
+                    new THREE.Matrix4().makeRotationZ(this._object.theta).premultiply(
+                    new THREE.Matrix4().makeTranslation(0, pivot_right_lower_arm.y, 0 ) ));
 
                 right_lower_arm.updateMatrixWorld(true);
                 // Updating screen
                 stats.update();
-                renderer.render(scene, camera); 
-
+                renderer.render(scene, camera);
+                
             })
 
             let lowerArmTween2 = new TWEEN.Tween( {theta: Math.PI/2})
@@ -71,22 +79,30 @@ Object.assign( WaveAnimation.prototype, {
 
                 var pivot_right_lower_arm;
 
-                let right_upper_arm =  robot.getObjectByName("right_upper_arm");
                 let right_lower_arm =  robot.getObjectByName("right_lower_arm");
 
                 pivot_right_lower_arm = new THREE.Vector3(
-                    right_lower_arm.position.x - right_lower_arm.geometry.parameters.width,
-                    right_lower_arm.position.y - right_lower_arm.geometry.parameters.height/2 ,
+                    right_lower_arm.position.x,
+                    right_lower_arm.position.y + right_lower_arm.geometry.parameters.height/2,
                     right_lower_arm.position.z,
                 );
 
-                right_lower_arm.matrix.makeRotationZ(this._object.theta).premultiply(
-                    new THREE.Matrix4().makeTranslation(-pivot_right_lower_arm.x, pivot_right_lower_arm.y/2, 0 ) );
+                right_lower_arm.matrix.makeTranslation(0, pivot_right_lower_arm.y, 0).premultiply(
+                    new THREE.Matrix4().makeRotationZ(this._object.theta).premultiply(
+                    new THREE.Matrix4().makeTranslation(0, pivot_right_lower_arm.y, 0 ) ));
 
                 right_lower_arm.updateMatrixWorld(true);
                 // Updating screen
                 stats.update();
                 renderer.render(scene, camera); 
+
+                console.log("lower arm height: " + right_lower_arm.geometry.parameters.height);
+                console.log("lower arm width: " + right_lower_arm.geometry.parameters.width);
+                console.log("lower arm position x: " + right_lower_arm.position.x);
+                console.log("lower arm position y: " + right_lower_arm.position.y);
+                console.log("lower arm pivot x: " + pivot_right_lower_arm.x);
+                console.log("lower arm pivot y: " + pivot_right_lower_arm.y);
+                console.log("==================");
 
             })
     
@@ -103,15 +119,15 @@ Object.assign( WaveAnimation.prototype, {
 
             pivot_right_upper_arm = new THREE.Vector3(
                 right_upper_arm.position.x,
-                right_upper_arm.position.y - right_upper_arm.geometry.parameters.height/2,
+                right_upper_arm.position.y + right_upper_arm.geometry.parameters.height/2,
                 right_upper_arm.position.z,
             );                
 
             // A primeira matriz da operação será a mais à direita
             // premultiply() vai adicionando as matriz à esquerda                
-            right_upper_arm.matrix.makeTranslation(0, pivot_right_upper_arm.y, 0).premultiply(
+            right_upper_arm.matrix.makeTranslation(0, -pivot_right_upper_arm.y, 0).premultiply(
                 new THREE.Matrix4().makeRotationZ(this._object.theta).premultiply(
-                new THREE.Matrix4().makeTranslation(pivot_right_upper_arm.x, -pivot_right_upper_arm.y, 0 ) ));
+                new THREE.Matrix4().makeTranslation(pivot_right_upper_arm.x, pivot_right_upper_arm.y, 0 ) ));
                 
             // Rotação original
             //right_upper_arm.matrix.makeRotationZ(this._object.theta).premultiply( new THREE.Matrix4().makeTranslation(2.6, 0, 0 ) );
@@ -129,8 +145,11 @@ Object.assign( WaveAnimation.prototype, {
         upperArmTween1.start();
         upperArmTween1.chain(lowerArmTween1);
         lowerArmTween1.chain(lowerArmTween2);
-        lowerArmTween2.chain(upperArmTween2);  
-        //lowerArmTween.start();     
+        lowerArmTween2.chain(upperArmTween2);
+        
+
+        //lowerArmTween1.start(); 
+        //lowerArmTween1.chain(lowerArmTween2);
 
     },
     animate: function(time) {
