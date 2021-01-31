@@ -1,46 +1,47 @@
 function JumpAnimation() {}
-    // Right arm
-    var angle_right_upper_arm_in_degrees = 150;
-    var angle_right_upper_arm_in_radians = angle_right_upper_arm_in_degrees * Math.PI / 180;
-
-    var angle_right_lower_arm_in_degrees = 90;
-    var angle_right_lower_arm_in_radians = angle_right_lower_arm_in_degrees * Math.PI / 180;
-    // -----
-
-    // Left arm
-    var angle_left_upper_arm_in_degrees = -150;
-    var angle_left_upper_arm_in_radians = angle_left_upper_arm_in_degrees * Math.PI / 180;
-
-    var angle_left_lower_arm_in_degrees = 90;
-    var angle_left_lower_arm_in_radians = angle_left_lower_arm_in_degrees * Math.PI / 180;
-    // -----
-
-    // Right leg
-    var angle_right_upper_leg_in_degrees = 60;
-    var angle_right_upper_leg_in_radians = angle_right_upper_leg_in_degrees * Math.PI / 180;
-
-    var angle_right_lower_leg_in_degrees = 90;
-    var angle_right_lower_leg_in_radians = angle_right_lower_leg_in_degrees * Math.PI / 180;
-    // -----
-
-    // Left leg
-    var angle_left_upper_leg_in_degrees = -105;
-    var angle_left_upper_leg_in_radians = angle_left_upper_leg_in_degrees * Math.PI / 180;
-
-    var angle_left_lower_leg_in_degrees = 90;
-    var angle_left_lower_leg_in_radians = angle_left_lower_leg_in_degrees * Math.PI / 180;
-    // -----
-
-    // Altura do pulo, que é o quanto o torso vai ser transladado no eixo y
-    var jump_height = 2;
-    
 
 Object.assign( JumpAnimation.prototype, {
 
     init: function() {
+        // Ângulos que cada articulação rotacionará
+        // Deixei o ângulo em graus pra ficar mais legível/fácil de entender, depois passo pra radianos
+        // Right arm
+        var angle_right_upper_arm_in_degrees = 180;
+        var angle_right_upper_arm_in_radians = angle_right_upper_arm_in_degrees * Math.PI / 180;
+
+        var angle_right_lower_arm_in_degrees = 90;
+        var angle_right_lower_arm_in_radians = angle_right_lower_arm_in_degrees * Math.PI / 180;
+        // -----
+
+        // Left arm
+        var angle_left_upper_arm_in_degrees = -90;
+        var angle_left_upper_arm_in_radians = angle_left_upper_arm_in_degrees * Math.PI / 180;
+
+        var angle_left_lower_arm_in_degrees = -60;
+        var angle_left_lower_arm_in_radians = angle_left_lower_arm_in_degrees * Math.PI / 180;
+        // -----
+
+        // Right leg
+        var angle_right_upper_leg_in_degrees = 60;
+        var angle_right_upper_leg_in_radians = angle_right_upper_leg_in_degrees * Math.PI / 180;
+
+        var angle_right_lower_leg_in_degrees = 90;
+        var angle_right_lower_leg_in_radians = angle_right_lower_leg_in_degrees * Math.PI / 180;
+        // -----
+
+        // Left leg
+        var angle_left_upper_leg_in_degrees = -105;
+        var angle_left_upper_leg_in_radians = angle_left_upper_leg_in_degrees * Math.PI / 180;
+
+        var angle_left_lower_leg_in_degrees = 90;
+        var angle_left_lower_leg_in_radians = angle_left_lower_leg_in_degrees * Math.PI / 180;
+        // -----
+
+        // Altura do pulo, que é o quanto o torso vai ser transladado no eixo y
+        var jump_height = 2;
         
         // Partes do robô
-        let torso = robot.getObjectByName("torso");
+        var torso = robot.getObjectByName("torso");
 
         var right_upper_arm =  robot.getObjectByName("right_upper_arm");
         var right_lower_arm =  robot.getObjectByName("right_lower_arm");
@@ -178,8 +179,8 @@ Object.assign( JumpAnimation.prototype, {
             })
 
         let rightUpperArmTween2 = new TWEEN.Tween( { theta: angle_right_upper_arm_in_radians} )
-        .to( { theta: 0 }, 500)
-        .onUpdate(function(){
+            .to( { theta: 0 }, 500)
+            .onUpdate(function(){
                 // This is an example of rotation of the right_upper_arm 
                 // Notice that the transform is M = T * R 
                                 
@@ -194,7 +195,7 @@ Object.assign( JumpAnimation.prototype, {
                 // Updating screen
                 stats.update();
                 renderer.render(scene, camera);    
-        })
+            })
 
         let leftUpperArmTween1 = new TWEEN.Tween( { theta: 0} )
             .to( { theta: angle_left_upper_arm_in_radians }, 500)
@@ -216,8 +217,8 @@ Object.assign( JumpAnimation.prototype, {
             })
 
         let leftUpperArmTween2 = new TWEEN.Tween( { theta: angle_left_upper_arm_in_radians} )
-        .to( { theta: 0 }, 500)
-        .onUpdate(function(){
+            .to( { theta: 0 }, 500)
+            .onUpdate(function(){
                 // This is an example of rotation of the left_upper_arm 
                 // Notice that the transform is M = T * R 
                                 
@@ -232,7 +233,36 @@ Object.assign( JumpAnimation.prototype, {
                 // Updating screen
                 stats.update();
                 renderer.render(scene, camera);    
-        })
+            })
+
+        let leftLowerArmTween1 = new TWEEN.Tween( { theta: 0})
+            .to( { theta: angle_left_lower_arm_in_radians }, 500)
+            .onUpdate(function(){
+
+                left_lower_arm.matrix.makeTranslation(0, pivot_left_lower_arm.y, 0).premultiply(
+                    new THREE.Matrix4().makeRotationZ(this._object.theta).premultiply(
+                    new THREE.Matrix4().makeTranslation(0, pivot_left_lower_arm.y, 0 ) ));
+
+                left_lower_arm.updateMatrixWorld(true);
+                // Updating screen
+                stats.update();
+                renderer.render(scene, camera);
+                
+            })
+
+        let leftLowerArmTween2 = new TWEEN.Tween( { theta: angle_left_lower_arm_in_radians })
+            .to( { theta: 0 }, 500)
+            .onUpdate(function(){
+
+                left_lower_arm.matrix.makeTranslation(0, pivot_left_lower_arm.y, 0).premultiply(
+                    new THREE.Matrix4().makeRotationZ(this._object.theta).premultiply(
+                    new THREE.Matrix4().makeTranslation(0, pivot_left_lower_arm.y, 0 ) ));
+
+                left_lower_arm.updateMatrixWorld(true);
+                // Updating screen
+                stats.update();
+                renderer.render(scene, camera);
+            })
 
         let rightUpperLegTween1 = new TWEEN.Tween( { theta: 0} )
             .to( { theta: angle_right_upper_leg_in_radians }, 500)
@@ -426,17 +456,30 @@ Object.assign( JumpAnimation.prototype, {
         
         rightLowerLegTween1.start();
         rightLowerLegTween1.chain(rightLowerLegTween2);
-
+        
         leftUpperArmTween1.start();
         leftUpperArmTween1.chain(leftUpperArmTween2);
         
+        leftLowerArmTween1.start();
+        leftLowerArmTween1.chain(leftLowerArmTween2);
+        
         leftUpperLegTween1.start();
         leftUpperLegTween1.chain(leftUpperLegTween2);
-
+        
         leftLowerLegTween1.start();
         leftLowerLegTween1.chain(leftLowerLegTween2);
-        
 
+        // Loop
+        /*
+        torsoTween2.chain(torsoTween1);
+        rightUpperArmTween2.chain(rightUpperArmTween1);
+        rightUpperLegTween2.chain(rightUpperLegTween1);
+        rightLowerLegTween2.chain(rightLowerLegTween1);
+        leftUpperArmTween2.chain(leftUpperArmTween1);
+        leftLowerArmTween2.chain(leftLowerArmTween1);
+        leftUpperLegTween2.chain(leftUpperLegTween1);
+        leftLowerLegTween2.chain(leftLowerLegTween1);
+        */
     },
     animate: function(time) {
         window.requestAnimationFrame(this.animate.bind(this));
