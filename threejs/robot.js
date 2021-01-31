@@ -71,7 +71,7 @@ function gen_robot() {
 
     robot.name = "robot";
 
-    return robot
+    return robot;
 }
 
 
