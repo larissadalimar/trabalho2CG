@@ -1,49 +1,51 @@
 
+
 function danceAnimation() {}
 
-    //Right upper arm
-    var right_upper_arm_angle_in_degrees = 180;
-    var right_upper_arm_angle_in_radians = right_upper_arm_angle_in_degrees * (Math.PI/3) / 180;
-    var right_upper_arm_angle_in_radians2 = right_upper_arm_angle_in_degrees * (Math.PI/6) / 180;
-
-    //Right lower arm
-    var right_lower_arm_angle_in_degrees = 180;
-    var right_lower_arm_angle_in_radians = right_lower_arm_angle_in_degrees * (Math.PI/2) / 180;
-
-    //Left upper arm
-    var left_upper_arm_angle_in_degrees = 180;
-    var left_upper_arm_angle_in_radians = left_upper_arm_angle_in_degrees * (-Math.PI/2) / 180;
-    var left_upper_arm_angle_in_radians2 = left_upper_arm_angle_in_degrees * (-2*Math.PI/3) / 180;
-
-    //Left lower arm
-    var left_lower_arm_angle_in_degrees = 180;
-    var left_lower_arm_angle_in_radians = left_lower_arm_angle_in_degrees * (-Math.PI/2) / 180;
-
-    //Left upper leg
-    var left_upper_leg_angle_in_degrees = 180;
-    var left_upper_leg_angle_in_radians = left_upper_leg_angle_in_degrees * (-Math.PI/3) / 180;
-
-    //Left lower leg
-    var left_lower_leg_angle_in_degrees = 180;
-    var left_lower_leg_angle_in_radians = left_lower_leg_angle_in_degrees * (Math.PI/3) / 180;
-    var left_lower_leg_angle_in_radians2 = left_lower_leg_angle_in_degrees * (-Math.PI/3) / 180;
-
-    //Right upper leg 
-    var right_upper_leg_angle_in_degrees = 180;
-    var right_upper_leg_angle_in_radians = right_upper_leg_angle_in_degrees * (Math.PI/3) / 180;
-
-    //Right lower leg 
-    var right_lower_leg_angle_in_degrees = 180;
-    var right_lower_leg_angle_in_radians = right_lower_leg_angle_in_degrees * (-Math.PI/3) / 180;
-    var right_lower_leg_angle_in_radians2 = right_lower_leg_angle_in_degrees * (Math.PI/3) / 180;
-
-    //Torso -> agachamento
-    var torso_sit = -2.5;
-    
+var danceTweens = new TWEEN.Group();
 
 Object.assign( danceAnimation.prototype, {
 
     init: function() {
+
+    
+        var right_upper_arm_angle_in_degrees = 180;
+        var right_upper_arm_angle_in_radians = right_upper_arm_angle_in_degrees * (Math.PI/3) / 180;
+        var right_upper_arm_angle_in_radians2 = right_upper_arm_angle_in_degrees * (Math.PI/6) / 180;
+    
+        //Right lower arm
+        var right_lower_arm_angle_in_degrees = 180;
+        var right_lower_arm_angle_in_radians = right_lower_arm_angle_in_degrees * (Math.PI/2) / 180;
+    
+        //Left upper arm
+        var left_upper_arm_angle_in_degrees = 180;
+        var left_upper_arm_angle_in_radians = left_upper_arm_angle_in_degrees * (-Math.PI/2) / 180;
+        var left_upper_arm_angle_in_radians2 = left_upper_arm_angle_in_degrees * (-2*Math.PI/3) / 180;
+    
+        //Left lower arm
+        var left_lower_arm_angle_in_degrees = 180;
+        var left_lower_arm_angle_in_radians = left_lower_arm_angle_in_degrees * (-Math.PI/2) / 180;
+    
+        //Left upper leg
+        var left_upper_leg_angle_in_degrees = 180;
+        var left_upper_leg_angle_in_radians = left_upper_leg_angle_in_degrees * (-Math.PI/3) / 180;
+    
+        //Left lower leg
+        var left_lower_leg_angle_in_degrees = 180;
+        var left_lower_leg_angle_in_radians = left_lower_leg_angle_in_degrees * (Math.PI/3) / 180;
+        var left_lower_leg_angle_in_radians2 = left_lower_leg_angle_in_degrees * (-Math.PI/3) / 180;
+    
+        //Right upper leg 
+        var right_upper_leg_angle_in_degrees = 180;
+        var right_upper_leg_angle_in_radians = right_upper_leg_angle_in_degrees * (Math.PI/3) / 180;
+    
+        //Right lower leg 
+        var right_lower_leg_angle_in_degrees = 180;
+        var right_lower_leg_angle_in_radians = right_lower_leg_angle_in_degrees * (-Math.PI/3) / 180;
+        var right_lower_leg_angle_in_radians2 = right_lower_leg_angle_in_degrees * (Math.PI/3) / 180;
+    
+        //Torso -> agachamento
+        var torso_sit = -2.5;
 
         // Pivôs pra cada articulação do robô
         var pivot_torso, pivot_right_upper_arm, pivor_right_lower_arm;
@@ -120,7 +122,9 @@ Object.assign( danceAnimation.prototype, {
             right_lower_leg.position.z,
         );
 
-        let rightUpperArmTween1 = new TWEEN.Tween( { theta: right_upper_arm_angle_in_radians2 } ) //right arm up
+        
+
+        let rightUpperArmTween1 = new TWEEN.Tween( { theta: right_upper_arm_angle_in_radians2 }) //right arm up
         .to( { theta: right_upper_arm_angle_in_radians }, 500)
         .onUpdate(function(){
                          
@@ -165,7 +169,7 @@ Object.assign( danceAnimation.prototype, {
             
         });
 
-        let leftUpperArmTween1 = new TWEEN.Tween( { theta: left_upper_arm_angle_in_radians } ) //left arm up
+        let leftUpperArmTween1 = new TWEEN.Tween( { theta: left_upper_arm_angle_in_radians }) //left arm up
         .to( { theta: left_upper_arm_angle_in_radians2 }, 500)
         .onUpdate(function(){
                          
@@ -210,7 +214,7 @@ Object.assign( danceAnimation.prototype, {
             
         });
 
-        let torsoTween1 = new TWEEN.Tween( { y: torso.position.y } ) //"sit"
+        let torsoTween1 = new TWEEN.Tween( { y: torso.position.y }) //"sit"
         .to( { y: torso_sit }, 500)
         .onUpdate(function(){
             // This is an example of rotation of the right_upper_arm 
@@ -317,32 +321,45 @@ Object.assign( danceAnimation.prototype, {
         
         //Arms
         rightUpperArmTween1.start(); 
-        rightLowerArmTween1.start();      
-        rightLowerArmTween1.chain(rightUpperArmTween2);
-        rightUpperArmTween2.chain(leftUpperArmTween2);
-
+        rightLowerArmTween1.start();
+        rightUpperArmTween1.chain(rightUpperArmTween2);
+        rightUpperArmTween2.chain(leftUpperArmTween2);    
+        
+    
         leftUpperArmTween1.start(); 
         leftLowerArmTween1.start();      
-        leftLowerArmTween1.chain(rightUpperArmTween1);
+        leftUpperArmTween1.chain(leftUpperArmTween2);
         leftUpperArmTween2.chain(rightUpperArmTween2);
+        
+         
 
         //legs
+
         torsoTween1.start();
         leftUpperLegTween1.start();
         leftLowerLegTween1.start();
         rightUpperLegTween1.start();
         rightLowerLegTween1.start();
 
-        leftLowerLegTween1.chain(leftLowerLegTween2);
-        leftLowerLegTween2.chain(leftLowerLegTween1);
+        //leftLowerLegTween1.chain(leftLowerLegTween2);
+
+       // leftLowerLegTween2.chain(leftLowerLegTween1);
     
         
+       // rightLowerLegTween1.chain(rightLowerLegTween2);
+    
+        //rightLowerLegTween1.chain(rightLowerLegTween2).repeat(2);
+        //rightLowerLegTween1.start();
+        
+        leftLowerLegTween1.chain(leftLowerLegTween2);
+        leftLowerLegTween2.chain(leftLowerLegTween1);
+
         rightLowerLegTween1.chain(rightLowerLegTween2);
         rightLowerLegTween2.chain(rightLowerLegTween1);
-        
 
     },
     animate: function(time) {
+        
         window.requestAnimationFrame(this.animate.bind(this));
         TWEEN.update(time);
     },

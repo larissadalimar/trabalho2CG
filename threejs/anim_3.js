@@ -1,43 +1,47 @@
-function JumpAnimation() {}
-    // Right arm
-    var angle_right_upper_arm_in_degrees = 150;
-    var angle_right_upper_arm_in_radians = angle_right_upper_arm_in_degrees * Math.PI / 180;
 
-    var angle_right_lower_arm_in_degrees = 90;
-    var angle_right_lower_arm_in_radians = angle_right_lower_arm_in_degrees * Math.PI / 180;
-    // -----
+function JumpAnimation() {}  
 
-    // Left arm
-    var angle_left_upper_arm_in_degrees = -150;
-    var angle_left_upper_arm_in_radians = angle_left_upper_arm_in_degrees * Math.PI / 180;
-
-    var angle_left_lower_arm_in_degrees = 90;
-    var angle_left_lower_arm_in_radians = angle_left_lower_arm_in_degrees * Math.PI / 180;
-    // -----
-
-    // Right leg
-    var angle_right_upper_leg_in_degrees = 60;
-    var angle_right_upper_leg_in_radians = angle_right_upper_leg_in_degrees * Math.PI / 180;
-
-    var angle_right_lower_leg_in_degrees = 90;
-    var angle_right_lower_leg_in_radians = angle_right_lower_leg_in_degrees * Math.PI / 180;
-    // -----
-
-    // Left leg
-    var angle_left_upper_leg_in_degrees = -150;
-    var angle_left_upper_leg_in_radians = angle_left_upper_leg_in_degrees * Math.PI / 180;
-
-    var angle_left_lower_leg_in_degrees = 90;
-    var angle_left_lower_leg_in_radians = angle_left_lower_leg_in_degrees * Math.PI / 180;
-    // -----
-
-    // Altura do pulo, que é o quanto o torso vai ser transladado no eixo y
-    var jump_height = 2;
-    
-
+    TWEEN.removeAll(); //to use only the tweens of this moviment
 Object.assign( JumpAnimation.prototype, {
 
     init: function() {
+
+        TWEEN.removeAll(); //to use just the tweens of this moviment
+
+        //Right arm
+        var angle_right_upper_arm_in_degrees = 150;
+        var angle_right_upper_arm_in_radians = angle_right_upper_arm_in_degrees * Math.PI / 180;
+    
+        var angle_right_lower_arm_in_degrees = 90;
+        var angle_right_lower_arm_in_radians = angle_right_lower_arm_in_degrees * Math.PI / 180;
+        // -----
+    
+        // Left arm
+        var angle_left_upper_arm_in_degrees = -150;
+        var angle_left_upper_arm_in_radians = angle_left_upper_arm_in_degrees * Math.PI / 180;
+    
+        var angle_left_lower_arm_in_degrees = 90;
+        var angle_left_lower_arm_in_radians = angle_left_lower_arm_in_degrees * Math.PI / 180;
+        // -----
+    
+        // Right leg
+        var angle_right_upper_leg_in_degrees = 60;
+        var angle_right_upper_leg_in_radians = angle_right_upper_leg_in_degrees * Math.PI / 180;
+    
+        var angle_right_lower_leg_in_degrees = 90;
+        var angle_right_lower_leg_in_radians = angle_right_lower_leg_in_degrees * Math.PI / 180;
+        // -----
+    
+        // Left leg
+        var angle_left_upper_leg_in_degrees = -150;
+        var angle_left_upper_leg_in_radians = angle_left_upper_leg_in_degrees * Math.PI / 180;
+    
+        var angle_left_lower_leg_in_degrees = 90;
+        var angle_left_lower_leg_in_radians = angle_left_lower_leg_in_degrees * Math.PI / 180;
+        // -----
+    
+        // Altura do pulo, que é o quanto o torso vai ser transladado no eixo y
+        var jump_height = 2;
         
         // Partes do robô
         let torso = robot.getObjectByName("torso");

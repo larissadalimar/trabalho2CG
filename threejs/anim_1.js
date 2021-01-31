@@ -1,4 +1,6 @@
+
 function WaveAnimation() {}
+    TWEEN.removeAll(); //to use only the tweens of this movimen
     var angle_right_upper_arm_in_degrees = 105;
     var angle_right_upper_arm_in_radians = angle_right_upper_arm_in_degrees * Math.PI / 180;
 
@@ -8,6 +10,8 @@ function WaveAnimation() {}
 Object.assign( WaveAnimation.prototype, {
 
     init: function() {
+
+        
 
         // Partes do robô
         var right_upper_arm =  robot.getObjectByName("right_upper_arm");
