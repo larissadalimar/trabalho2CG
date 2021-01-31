@@ -24,7 +24,7 @@ function JumpAnimation() {}
     // -----
 
     // Left leg
-    var angle_left_upper_leg_in_degrees = -150;
+    var angle_left_upper_leg_in_degrees = -105;
     var angle_left_upper_leg_in_radians = angle_left_upper_leg_in_degrees * Math.PI / 180;
 
     var angle_left_lower_leg_in_degrees = 90;
@@ -242,9 +242,9 @@ Object.assign( JumpAnimation.prototype, {
                                 
                 // A primeira matriz da operação será a mais à direita
                 // premultiply() vai adicionando as matriz à esquerda                
-                right_upper_leg.matrix.makeTranslation(0, pivot_right_upper_leg.y, 0).premultiply(
+                right_upper_leg.matrix.makeTranslation(0, pivot_right_upper_leg.y + 1, 0).premultiply(
                     new THREE.Matrix4().makeRotationZ(this._object.theta).premultiply(
-                    new THREE.Matrix4().makeTranslation(pivot_right_upper_leg.x, pivot_right_upper_leg.y + 1, 0 ) ));
+                    new THREE.Matrix4().makeTranslation(pivot_right_upper_leg.x, pivot_right_upper_leg.y, 0 ) ));
 
                 // Updating final world matrix (with parent transforms) - mandatory
                 right_upper_leg.updateMatrixWorld(true);
@@ -261,9 +261,9 @@ Object.assign( JumpAnimation.prototype, {
                                 
                 // A primeira matriz da operação será a mais à direita
                 // premultiply() vai adicionando as matriz à esquerda                
-                right_upper_leg.matrix.makeTranslation(0, pivot_right_upper_leg.y, 0).premultiply(
+                right_upper_leg.matrix.makeTranslation(0, pivot_right_upper_leg.y + 1, 0).premultiply(
                     new THREE.Matrix4().makeRotationZ(this._object.theta).premultiply(
-                    new THREE.Matrix4().makeTranslation(pivot_right_upper_leg.x, pivot_right_upper_leg.y + 1, 0 ) ));
+                    new THREE.Matrix4().makeTranslation(pivot_right_upper_leg.x, pivot_right_upper_leg.y, 0 ) ));
 
                 // Updating final world matrix (with parent transforms) - mandatory
                 right_upper_leg.updateMatrixWorld(true);
@@ -332,9 +332,9 @@ Object.assign( JumpAnimation.prototype, {
                                 
                 // A primeira matriz da operação será a mais à direita
                 // premultiply() vai adicionando as matriz à esquerda                
-                left_upper_leg.matrix.makeTranslation(0, pivot_left_upper_leg.y, 0).premultiply(
+                left_upper_leg.matrix.makeTranslation(0, pivot_left_upper_leg.y + 1, 0).premultiply(
                     new THREE.Matrix4().makeRotationZ(this._object.theta).premultiply(
-                    new THREE.Matrix4().makeTranslation(pivot_left_upper_leg.x, pivot_left_upper_leg.y + 1, 0 ) ));
+                    new THREE.Matrix4().makeTranslation(pivot_left_upper_leg.x, pivot_left_upper_leg.y, 0 ) ));
             
                 // Updating final world matrix (with parent transforms) - mandatory
                 left_upper_leg.updateMatrixWorld(true);
@@ -351,9 +351,9 @@ Object.assign( JumpAnimation.prototype, {
                                 
                 // A primeira matriz da operação será a mais à direita
                 // premultiply() vai adicionando as matriz à esquerda                
-                left_upper_leg.matrix.makeTranslation(0, pivot_left_upper_leg.y, 0).premultiply(
+                left_upper_leg.matrix.makeTranslation(0, pivot_left_upper_leg.y + 1, 0).premultiply(
                     new THREE.Matrix4().makeRotationZ(this._object.theta).premultiply(
-                    new THREE.Matrix4().makeTranslation(pivot_left_upper_leg.x, pivot_left_upper_leg.y + 1, 0 ) ));
+                    new THREE.Matrix4().makeTranslation(pivot_left_upper_leg.x, pivot_left_upper_leg.y, 0 ) ));
             
                 // Updating final world matrix (with parent transforms) - mandatory
                 left_upper_leg.updateMatrixWorld(true);
@@ -417,7 +417,7 @@ Object.assign( JumpAnimation.prototype, {
         
         torsoTween1.start();
         torsoTween1.chain(torsoTween2);
-
+        
         rightUpperArmTween1.start();
         rightUpperArmTween1.chain(rightUpperArmTween2);
         
@@ -429,7 +429,7 @@ Object.assign( JumpAnimation.prototype, {
 
         leftUpperArmTween1.start();
         leftUpperArmTween1.chain(leftUpperArmTween2);
-
+        
         leftUpperLegTween1.start();
         leftUpperLegTween1.chain(leftUpperLegTween2);
 
