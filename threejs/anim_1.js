@@ -83,7 +83,7 @@ Object.assign( WaveAnimation.prototype, {
                 
             })
 
-            let rightLowerArmTween2 = new TWEEN.Tween( { theta: angle_right_lower_arm_in_radians })
+        let rightLowerArmTween2 = new TWEEN.Tween( { theta: angle_right_lower_arm_in_radians })
             .to( { theta: 0 }, 500)
             .onUpdate(function(){
 
@@ -109,26 +109,26 @@ Object.assign( WaveAnimation.prototype, {
             })
     
         let rightUpperArmTween2 = new TWEEN.Tween( { theta: angle_right_upper_arm_in_radians } )
-        .to( { theta: 0 }, 500)
-        .onUpdate(function(){
-            // This is an example of rotation of the right_upper_arm 
-            // Notice that the transform is M = T * R             
+            .to( { theta: 0 }, 500)
+            .onUpdate(function(){
+                // This is an example of rotation of the right_upper_arm 
+                // Notice that the transform is M = T * R             
 
-            // A primeira matriz da operação será a mais à direita
-            // premultiply() vai adicionando as matriz à esquerda                
-            right_upper_arm.matrix.makeTranslation(0, -pivot_right_upper_arm.y, 0).premultiply(
-                new THREE.Matrix4().makeRotationZ(this._object.theta).premultiply(
-                new THREE.Matrix4().makeTranslation(pivot_right_upper_arm.x, pivot_right_upper_arm.y, 0 ) ));
-                
-            // Rotação original
-            //right_upper_arm.matrix.makeRotationZ(this._object.theta).premultiply( new THREE.Matrix4().makeTranslation(2.6, 0, 0 ) );
+                // A primeira matriz da operação será a mais à direita
+                // premultiply() vai adicionando as matriz à esquerda                
+                right_upper_arm.matrix.makeTranslation(0, -pivot_right_upper_arm.y, 0).premultiply(
+                    new THREE.Matrix4().makeRotationZ(this._object.theta).premultiply(
+                    new THREE.Matrix4().makeTranslation(pivot_right_upper_arm.x, pivot_right_upper_arm.y, 0 ) ));
+                    
+                // Rotação original
+                //right_upper_arm.matrix.makeRotationZ(this._object.theta).premultiply( new THREE.Matrix4().makeTranslation(2.6, 0, 0 ) );
 
-            // Updating final world matrix (with parent transforms) - mandatory
-            right_upper_arm.updateMatrixWorld(true);
-            // Updating screen
-            stats.update();
-            renderer.render(scene, camera);    
-        })
+                // Updating final world matrix (with parent transforms) - mandatory
+                right_upper_arm.updateMatrixWorld(true);
+                // Updating screen
+                stats.update();
+                renderer.render(scene, camera);    
+            })
         
         
         //  rightUpperArmTween.chain( ... ); this allows other related Tween animations occur at the same time

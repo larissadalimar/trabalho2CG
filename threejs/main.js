@@ -107,6 +107,8 @@ function onDocumentKeyDown(event) {
         3 : JumpAnimation,
     };
 
+    // Antes de rodar uma animação, reseta o robô
+    reset();
     // Run selected animation
     animation = new animations[key]();
     animation.run()

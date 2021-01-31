@@ -1,11 +1,12 @@
 
 
 function danceAnimation() {}
+    TWEEN.removeAll(); //to use only the tweens of this moviment
 
 Object.assign( danceAnimation.prototype, {
 
     init: function() {
-
+        TWEEN.removeAll(); //to use only the tweens of this moviment
     
         var right_upper_arm_angle_in_degrees = 180;
         var right_upper_arm_angle_in_radians = right_upper_arm_angle_in_degrees * (Math.PI/3) / 180;
@@ -234,9 +235,9 @@ Object.assign( danceAnimation.prototype, {
         .to( { theta: left_upper_leg_angle_in_radians }, 500)
         .onUpdate(function(){
 
-            left_upper_leg.matrix.makeTranslation(0, pivot_left_upper_leg.y, 0).premultiply(
+            left_upper_leg.matrix.makeTranslation(0, pivot_left_upper_leg.y + 1, 0).premultiply(
                 new THREE.Matrix4().makeRotationZ(this._object.theta).premultiply(
-                new THREE.Matrix4().makeTranslation(pivot_left_upper_leg.x, pivot_left_upper_leg.y+1, 0 ) ));
+                new THREE.Matrix4().makeTranslation(pivot_left_upper_leg.x, pivot_left_upper_leg.y, 0 ) ));
 
             left_upper_leg.updateMatrixWorld(true);
             // Updating screen
@@ -276,9 +277,9 @@ Object.assign( danceAnimation.prototype, {
         .to( { theta: right_upper_leg_angle_in_radians }, 500)
         .onUpdate(function(){
 
-            right_upper_leg.matrix.makeTranslation(0, pivot_right_upper_leg.y, 0).premultiply(
+            right_upper_leg.matrix.makeTranslation(0, pivot_right_upper_leg.y + 1, 0).premultiply(
                 new THREE.Matrix4().makeRotationZ(this._object.theta).premultiply(
-                new THREE.Matrix4().makeTranslation(pivot_right_upper_leg.x, pivot_right_upper_leg.y+1, 0 ) ));
+                new THREE.Matrix4().makeTranslation(pivot_right_upper_leg.x, pivot_right_upper_leg.y, 0 ) ));
 
             right_upper_leg.updateMatrixWorld(true);
             // Updating screen

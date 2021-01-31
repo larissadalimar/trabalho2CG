@@ -12,7 +12,7 @@ Object.assign( JumpAnimation.prototype, {
         var angle_right_upper_arm_in_degrees = 150;
         var angle_right_upper_arm_in_radians = angle_right_upper_arm_in_degrees * Math.PI / 180;
     
-        var angle_right_lower_arm_in_degrees = 90;
+        var angle_right_lower_arm_in_degrees = 0;
         var angle_right_lower_arm_in_radians = angle_right_lower_arm_in_degrees * Math.PI / 180;
         // -----
     
@@ -198,6 +198,35 @@ Object.assign( JumpAnimation.prototype, {
                 // Updating screen
                 stats.update();
                 renderer.render(scene, camera);    
+            })
+
+        let rightLowerArmTween1 = new TWEEN.Tween( { theta: 0})
+            .to( { theta: angle_right_lower_arm_in_radians }, 500)
+            .onUpdate(function(){
+        
+                right_lower_arm.matrix.makeTranslation(0, pivot_right_lower_arm.y, 0).premultiply(
+                    new THREE.Matrix4().makeRotationZ(this._object.theta).premultiply(
+                    new THREE.Matrix4().makeTranslation(0, pivot_right_lower_arm.y, 0 ) ));
+        
+                right_lower_arm.updateMatrixWorld(true);
+                // Updating screen
+                stats.update();
+                renderer.render(scene, camera);
+                
+            })
+        
+        let rightLowerArmTween2 = new TWEEN.Tween( { theta: angle_right_lower_arm_in_radians })
+            .to( { theta: 0 }, 500)
+            .onUpdate(function(){
+        
+                right_lower_arm.matrix.makeTranslation(0, pivot_right_lower_arm.y, 0).premultiply(
+                    new THREE.Matrix4().makeRotationZ(this._object.theta).premultiply(
+                    new THREE.Matrix4().makeTranslation(0, pivot_right_lower_arm.y, 0 ) ));
+        
+                right_lower_arm.updateMatrixWorld(true);
+                // Updating screen
+                stats.update();
+                renderer.render(scene, camera);
             })
 
         let leftUpperArmTween1 = new TWEEN.Tween( { theta: 0} )
@@ -453,6 +482,9 @@ Object.assign( JumpAnimation.prototype, {
         
         rightUpperArmTween1.start();
         rightUpperArmTween1.chain(rightUpperArmTween2);
+        
+        rightLowerArmTween1.start();
+        rightLowerArmTween1.chain(rightLowerArmTween2);
         
         rightUpperLegTween1.start();
         rightUpperLegTween1.chain(rightUpperLegTween2);
