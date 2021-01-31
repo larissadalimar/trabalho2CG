@@ -2,8 +2,6 @@
 
 function danceAnimation() {}
 
-var danceTweens = new TWEEN.Group();
-
 Object.assign( danceAnimation.prototype, {
 
     init: function() {

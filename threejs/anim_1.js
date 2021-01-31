@@ -1,15 +1,16 @@
 
 function WaveAnimation() {}
-    TWEEN.removeAll(); //to use only the tweens of this movimen
-    var angle_right_upper_arm_in_degrees = 105;
-    var angle_right_upper_arm_in_radians = angle_right_upper_arm_in_degrees * Math.PI / 180;
-
-    var angle_right_lower_arm_in_degrees = 90;
-    var angle_right_lower_arm_in_radians = angle_right_lower_arm_in_degrees * Math.PI / 180;
-
+TWEEN.removeAll();
 Object.assign( WaveAnimation.prototype, {
 
     init: function() {
+        // Ângulos que cada articulação rotacionará
+        // Deixei o ângulo em graus pra ficar mais legível/fácil de entender, depois passo pra radianos
+        var angle_right_upper_arm_in_degrees = 105;
+        var angle_right_upper_arm_in_radians = angle_right_upper_arm_in_degrees * Math.PI / 180;
+
+        var angle_right_lower_arm_in_degrees = 90;
+        var angle_right_lower_arm_in_radians = angle_right_lower_arm_in_degrees * Math.PI / 180;
 
         
 
