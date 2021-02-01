@@ -111,8 +111,6 @@ function gen_triangle( size, v1 = new THREE.Vector3(-1, 0, 0), v2 = new THREE.Ve
 
 // Função que reseta as posições iniciais das partes do robô
 function reset(){
-    console.log("resetei");
-
     TWEEN.removeAll(); //to use just the tweens of this moviment
 
     // Ângulo do reset
